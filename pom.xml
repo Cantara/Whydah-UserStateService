@@ -31,7 +31,7 @@
 	
 		<!-- 3rd party -->
 		<slf4j.version>1.7.36</slf4j.version>
-		<logback.version>1.2.11</logback.version>
+		<logback.version>1.2.13</logback.version>
 		<logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
 		<resilience4j-basecommands.version>0.5.4</resilience4j-basecommands.version>
 		<resilience4j-circuitbreaker.version>1.7.1</resilience4j-circuitbreaker.version>

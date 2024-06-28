@@ -36,7 +36,7 @@
 		<resilience4j-basecommands.version>0.8.22</resilience4j-basecommands.version>
 		<resilience4j-circuitbreaker.version>1.7.1</resilience4j-circuitbreaker.version>
 		<apache.httpclient.version>4.5.14</apache.httpclient.version>
-		<hibernate-hikaricp.version>5.6.15.Final</hibernate-hikaricp.version>
+		<hibernate-hikaricp.version>6.5.2.Final</hibernate-hikaricp.version>
 		<flyway.version>10.15.0</flyway.version>
 		<h2.version>2.2.224</h2.version>
 		<postgresql.version>42.7.3</postgresql.version>

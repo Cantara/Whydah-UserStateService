@@ -26,7 +26,7 @@
 		<java.version>11</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mainClass>net.whydah.userstate.MainApplication</mainClass>
-		<swagger.version>2.2.0</swagger.version>
+		<swagger.version>2.2.22</swagger.version>
 		<stingray.version>1.10.14</stingray.version>
 	
 		<!-- 3rd party -->

@@ -23,7 +23,7 @@
 		<tag>HEAD</tag>
 	</scm>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mainClass>net.whydah.userstate.MainApplication</mainClass>
 		<swagger.version>2.2.22</swagger.version>

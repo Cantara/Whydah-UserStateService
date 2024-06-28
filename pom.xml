@@ -34,7 +34,7 @@
 		<logback.version>1.5.6</logback.version>
 		<logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
 		<resilience4j-basecommands.version>0.8.22</resilience4j-basecommands.version>
-		<resilience4j-circuitbreaker.version>1.7.1</resilience4j-circuitbreaker.version>
+		<resilience4j-circuitbreaker.version>2.2.0</resilience4j-circuitbreaker.version>
 		<apache.httpclient.version>4.5.14</apache.httpclient.version>
 		<hibernate-hikaricp.version>5.6.15.Final</hibernate-hikaricp.version>
 		<flyway.version>10.15.0</flyway.version>

@@ -15,7 +15,7 @@ import lombok.Data;
 public class AppStateEntity implements Serializable  {
 
 	@Id
-	@UuidGenerator
+	//@UuidGenerator
 	protected String id;
 	
 	//trace the last page index from fetching the users from UAS

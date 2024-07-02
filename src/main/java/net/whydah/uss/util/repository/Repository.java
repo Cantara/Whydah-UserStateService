@@ -3,6 +3,7 @@ package net.whydah.uss.util.repository;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -145,7 +146,8 @@ public abstract class Repository<T, K> {
 
 			@Override
 			public String getPersistenceProviderClassName() {
-				return "com.zaxxer.hikari.hibernate.HikariConnectionProvider";
+				return "org.hibernate.jpa.HibernatePersistenceProvider";
+				//return "com.zaxxer.hikari.hibernate.HikariConnectionProvider";
 			}
 
 			@Override
@@ -186,7 +188,10 @@ public abstract class Repository<T, K> {
 
 			@Override
 			public List<String> getManagedClassNames() {
-				return Collections.emptyList();
+				return Arrays.asList("net.whydah.uss.entity.AppStateEntity",
+						"net.whydah.uss.entity.LoginUserStatusEntity", 
+						"net.whydah.uss.entity.OldUserEntity"
+						);
 			}
 
 			@Override

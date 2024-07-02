@@ -51,7 +51,13 @@
 	</properties>
 
 	<dependencies>
-
+		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+		<dependency>
+		    <groupId>javax.el</groupId>
+		    <artifactId>javax.el-api</artifactId>
+		    <version>3.0.1-b06</version>
+		</dependency>
+				
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>

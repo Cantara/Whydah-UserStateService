@@ -55,7 +55,7 @@ public class APIServiceImpl extends APIService {
 		ScheduledExecutorService scheduledExecutorService2 = Executors.newScheduledThreadPool(1);
 		scheduledExecutorService2.scheduleAtFixedRate(() -> {
 			getModuleImportUser().importUsers();
-		}, 0, 1, TimeUnit.DAYS);
+		}, 0, 1, TimeUnit.HOURS);
 	}
 
 
@@ -64,14 +64,14 @@ public class APIServiceImpl extends APIService {
 		scheduledExecutorService2.scheduleAtFixedRate(() -> {
 			getModuleDetectOldUser().detectOldUsers();
 			getNotifyOldUserModule().checkAndSendNotifications();
-		}, 1, 1, TimeUnit.DAYS);
+		}, 0, 1, TimeUnit.DAYS);
 	}
 	
 	private void runRemoveOldUserSchedule() {
 		ScheduledExecutorService scheduledExecutorService2 = Executors.newScheduledThreadPool(1);
 		scheduledExecutorService2.scheduleAtFixedRate(() -> {
 			getModuleRemoveOldUser().checkOldUsersAndRemove();
-		}, 1, 1, TimeUnit.DAYS);
+		}, 0, 1, TimeUnit.DAYS);
 	}
 	
 	

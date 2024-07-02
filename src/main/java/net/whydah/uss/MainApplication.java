@@ -31,7 +31,17 @@ public class MainApplication extends AbstractStingrayApplication<MainApplication
         	
         	MainApplication application = initApp();
             APIService apiService = application.get(APIService.class);
-            apiService.initialize();
+            FlywayService flywayService = application.get(FlywayService.class);
+            while(!flywayService.isReady() && !flywayService.hasError()) {
+            	Thread.sleep(1000);
+            }
+            if(!flywayService.hasError() && flywayService.isReady()) {
+                apiService.initialize();
+            } else {
+            	log.error("Service failed to start due to a failure in flyway bootstrap process");
+            	System.exit(1);
+            }
+            
         
             
         } catch (Throwable t) {

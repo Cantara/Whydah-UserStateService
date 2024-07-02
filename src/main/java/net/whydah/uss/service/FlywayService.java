@@ -14,6 +14,9 @@ public class FlywayService {
 	
 	public static final Logger logger = LoggerFactory.getLogger(FlywayService.class);
 	
+	private boolean isReady = false;
+	private boolean hasError = false;
+	
 	public FlywayService(ApplicationProperties appConfigs) {
 		try {
 			
@@ -27,8 +30,21 @@ public class FlywayService {
     		
             DatabaseMigrationHelper databaseMigrationHelper = new DatabaseMigrationHelper(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
             databaseMigrationHelper.upgradeDatabase();
+            isReady = true;
+            
         } catch (Exception e) {
         	logger.error("Unable to create and migrate database", e);
+        	isReady = false;
+        	hasError = true;
         }
 	}
+	
+	public boolean isReady() {
+		return isReady;
+	}
+	
+	public boolean hasError() {
+		return hasError;
+	}
+	
 }

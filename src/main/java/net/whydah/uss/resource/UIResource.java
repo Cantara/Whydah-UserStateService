@@ -128,7 +128,7 @@ public class UIResource {
 					.replace("${firstname}", params.containsKey("firstname")?params.get("firstname"):"John")
 					.replace("${username}", params.containsKey("username")?params.get("username"):"99999999");
 			
-			sent = service.getModuleWhydahClient().sendScheduledMailWithAMessage(email, template, 0);
+			sent = service.getModuleWhydahClient().sendScheduledMailWithAMessage(email, template, System.currentTimeMillis() + 30000);
 		}
 		
 		model.put("response_test_mail_sending", sent? "Send succeeded" : "Send failed");

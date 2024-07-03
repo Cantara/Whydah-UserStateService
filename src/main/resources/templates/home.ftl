@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>User State Service</title>
-  	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+  	<link rel="icon" href="/uss/favicon.ico" type="image/x-icon"/>
   	
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -57,7 +57,7 @@
 			      </div>
 			      <div class="modal-body">
 			        
-			      <form id="test_mail_sending_form" name="test_mail_sending_form" action="/?accesstoken=${accesstoken}" method="post">
+			      <form id="test_mail_sending_form" name="test_mail_sending_form" action="/uss/?accesstoken=${accesstoken}" method="post">
 					  <div class="form-group">
 					    <label for="email">Your email address</label>
 					    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>

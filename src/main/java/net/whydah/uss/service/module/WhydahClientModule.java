@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kong.unirest.Empty;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import net.whydah.sso.application.types.ApplicationCredential;
@@ -95,7 +96,7 @@ public class WhydahClientModule {
 
 
 	public boolean sendScheduledMail(String email, String username, String firstName, String lastName, long timestamp) {
-		HttpResponse res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
+		HttpResponse<Empty> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
 				.field("timestamp", timestamp)
 				.field("emailaddress", email)
 				.field("subject", AppSettings.MAIL_SUBJECT)
@@ -110,7 +111,7 @@ public class WhydahClientModule {
 	}
 	
 	public boolean sendScheduledMailWithAMessage(String email, String message, long timestamp) {
-		HttpResponse res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
+		HttpResponse<Empty> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
 				.field("timestamp", timestamp)
 				.field("emailaddress", email)
 				.field("subject", AppSettings.MAIL_SUBJECT)

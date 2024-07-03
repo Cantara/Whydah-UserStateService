@@ -120,7 +120,7 @@ public class UIResource {
 					params.containsKey("username")?params.get("username"):"99999999",
 					params.containsKey("firstname")?params.get("firstname"):"John",
 					params.containsKey("lastname")?params.get("lastname"):"Kenedy",
-				    0);
+							System.currentTimeMillis() + 30000);
 		} else {
 			String template = "<html><head></head><body><p>${msg}</p></body></html>";
 			template = template.replace("${msg}", message)

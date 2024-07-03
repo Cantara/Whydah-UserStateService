@@ -38,8 +38,8 @@ public class ImportUserModuleImpl implements ImportUserModule {
 
 		AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 		int current_page = app_state_en.getImportuser_page_index();
-		int total_users_imported = app_state_en.getStats_total_users_imported();
-		doImport(current_page, total_users_imported);
+		Long total_users_imported = api_service.getRepositoryLoginUserStatus().count();
+		doImport(current_page, Math.toIntExact(total_users_imported));
 
 	}
 
@@ -70,8 +70,13 @@ public class ImportUserModuleImpl implements ImportUserModule {
 			}
 
 			if (new_users.size() > 0) {
-				newUserCount += new_users.size();
+				newUserCount = newUserCount + new_users.size();
 				api_service.getRepositoryLoginUserStatus().insertAll(new_users);
+				
+				AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
+				app_state_en.setImportuser_page_index(page);
+				app_state_en.setStats_total_users_imported(newUserCount);
+				api_service.getRepositoryAppState().update(app_state_en);
 			}
 
 			if (!shouldStop) {
@@ -81,12 +86,16 @@ public class ImportUserModuleImpl implements ImportUserModule {
 				}
 
 				doImport(++page, newUserCount);
+				
+				
+				
 			} else {
 
 				AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 				app_state_en.setImportuser_page_index(page);
-				app_state_en.setStats_total_users_imported(newUserCount);
+				app_state_en.setStats_total_users_imported(Math.toIntExact(api_service.getRepositoryLoginUserStatus().count()));
 				api_service.getRepositoryAppState().update(app_state_en);
+				
 			}
 		} catch (Exception ex) {
 			logger.error("unexpected error", ex);

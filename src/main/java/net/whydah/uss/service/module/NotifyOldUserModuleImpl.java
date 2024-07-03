@@ -39,7 +39,7 @@ public class NotifyOldUserModuleImpl implements NotifyOldUserModule {
 					template = template.replace("${msg}", AppSettings.MAIL_DEFAULT_MESSAGE)
 							.replace("${firstname}", user.getFirstName()).replace("${lastname}", user.getLastName())
 							.replace("${username}", user.getUsername());
-					sent = api_service.getModuleWhydahClient().sendScheduledMailWithAMessage(user.getEmail(), template, 0);
+					sent = api_service.getModuleWhydahClient().sendScheduledMailWithAMessage(user.getEmail(), template, System.currentTimeMillis() + 30000);
 				}
 
 				if (sent) {

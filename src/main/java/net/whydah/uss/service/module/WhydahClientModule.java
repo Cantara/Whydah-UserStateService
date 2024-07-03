@@ -96,7 +96,7 @@ public class WhydahClientModule {
 
 
 	public boolean sendScheduledMail(String email, String username, String firstName, String lastName, long timestamp) {
-		HttpResponse<Empty> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
+		HttpResponse<String> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
 				.field("timestamp", timestamp)
 				.field("emailaddress", email)
 				.field("subject", AppSettings.MAIL_SUBJECT)
@@ -106,17 +106,20 @@ public class WhydahClientModule {
 									.with("firstname", firstName)
 									.with("lastname", lastName)
 						))
-				.asEmpty();
+				.asString();
+		logger.debug("sendScheduledMailWithAMessage(username={}, firstName={}, lastName={}, timestamp={}) returns {}", email, firstName, lastName, timestamp, res.getBody());
 		return res.getStatus() == 200;
 	}
 	
 	public boolean sendScheduledMailWithAMessage(String email, String message, long timestamp) {
-		HttpResponse<Empty> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
+		HttpResponse<String> res = Unirest.post(was.getUAS() + was.getActiveApplicationTokenId() + "/send_scheduled_email")
+				.contentType("application/x-www-form-urlencoded")
 				.field("timestamp", timestamp)
 				.field("emailaddress", email)
 				.field("subject", AppSettings.MAIL_SUBJECT)
 				.field("emailMessage", message)
-				.asEmpty();
+				.asString();
+		logger.debug("sendScheduledMailWithAMessage(email={}, message={}, timestamp={}) returns {}", email, message, timestamp, res.getBody());
 		return res.getStatus() == 200;
 	}
 	

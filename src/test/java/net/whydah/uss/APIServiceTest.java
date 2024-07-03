@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.whydah.sso.user.types.UserToken;
+import net.whydah.sso.whydah.DEFCON;
 import net.whydah.uss.entity.LoginUserStatusEntity;
 import net.whydah.uss.entity.OldUserEntity;
 import net.whydah.uss.repository.AppStateRepository;
@@ -24,8 +26,10 @@ import net.whydah.uss.service.APIServiceImpl;
 import net.whydah.uss.service.module.DetectOldUserModule;
 import net.whydah.uss.service.module.DetectOldUserModuleImpl;
 import net.whydah.uss.service.module.WhydahClientModule;
+import net.whydah.uss.settings.AppSettings;
 import net.whydah.uss.util.EntityUtils;
 import net.whydah.uss.util.FluentHashMap;
+import net.whydah.uss.util.LogonTimeRepoter;
 
 public class APIServiceTest {
 	
@@ -75,6 +79,27 @@ public class APIServiceTest {
 	}
 	
 	@Test
+	public void testReceivingReportFromSTS() throws InterruptedException {
+		LogonTimeRepoter reporter = new LogonTimeRepoter(AppSettings.MY_URI, AppSettings.ACCESS_TOKEN);
+		String newuser_uid = UUID.randomUUID().toString();
+		UserToken u = new UserToken();
+		u.setCellPhone("999999999");
+		u.setDefcon(DEFCON.DEFCON5.name());
+		u.setEmail("misterhuydo@gmail.com");
+		u.setFirstName("huy");
+		u.setLastName("do");
+		u.setUid(UUID.randomUUID().toString());
+		u.setUserName("misterhuydo");
+		reporter.update(u);
+		
+		Thread.sleep(10000);
+		
+		//receive this report
+		assertTrue(service.getRepositoryLoginUserStatus().findById(newuser_uid).isPresent());
+		
+	}
+	
+	@Test
 	public void testImportUser_module() {
 		String logPrefix = "testImportUser_module() - ";
 		assertTrue(service.getRepositoryLoginUserStatus().count()==0);
@@ -112,7 +137,7 @@ public class APIServiceTest {
 		log.info(logPrefix + "App state {}", service.getRepositoryAppState().get());
 	}
 	
-	@Disabled("Sending email is not working in whydah cantara")
+	@Disabled("It is working for now :) Don't spam misterhuydo@gmail.com")
 	@Test
 	public void testNotifyOldUser_module() {
 		String logPrefix = "testNotifyOldUser_module() - ";

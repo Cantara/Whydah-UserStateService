@@ -88,7 +88,7 @@ public class APIServiceTest {
 		u.setEmail("misterhuydo@gmail.com");
 		u.setFirstName("huy");
 		u.setLastName("do");
-		u.setUid(UUID.randomUUID().toString());
+		u.setUid(newuser_uid);
 		u.setUserName("misterhuydo");
 		reporter.update(u);
 		
@@ -99,6 +99,7 @@ public class APIServiceTest {
 		
 	}
 	
+	@Disabled("will enable back if https://whydahdev.cantara.no/ is working again")
 	@Test
 	public void testImportUser_module() {
 		String logPrefix = "testImportUser_module() - ";

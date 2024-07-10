@@ -123,5 +123,15 @@ public class APIServiceImpl extends APIService {
 		return getRepositoryLoginUserStatus().getNumberOfRecentLogins(LocalDateTime.now().minusDays(AppSettings.RECENT_LOGON_PERIOD_IN_DAY));
 	}
 
+	@Override
+	public void deleteUserLogonTimeFromUAS(String uid) {
+		getRepositoryLoginUserStatus().deleteById(uid);
+		getRepositoryOldUser().deleteById(uid);
+		//update app status
+		AppStateEntity en = getRepositoryAppState().get();
+		en.setStats_total_users_imported(en.getStats_total_users_imported() - 1);
+		getRepositoryAppState().update(en);
+	}
+
 	
 }

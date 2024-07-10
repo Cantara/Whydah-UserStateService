@@ -85,5 +85,7 @@ public abstract class APIService {
 
 	public abstract long getNumberOfRecentLogins();
 
+	public abstract void deleteUserLogonTimeFromUAS(String uid);
+
 
 }

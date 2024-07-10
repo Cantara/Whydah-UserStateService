@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -52,9 +53,26 @@ public class APIResource {
 	@Path("/{accesstoken}/update")
 	public Response updateLogonTimeFromSTS(@Context HttpServletRequest request, 
 			@PathParam("accesstoken") String accesstoken,
-			@RequestBody List<UserIdentity> users) throws IOException {
+			@RequestBody List<UserIdentity> users) throws Exception {
+		log.info("updateLogonTimeFromSTS/{}/update called", accesstoken);
 		if(accesstoken!=null && accesstoken.equalsIgnoreCase(AppSettings.ACCESS_TOKEN)) {
 			service.updateUserLogonTimeFromSTS(users);
+			return Response.ok("OK").build();
+		} else {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		
+	}
+	
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{accesstoken}/delete/{uid}")
+	public Response deleteUserFromUAS(@Context HttpServletRequest request, 
+			@PathParam("accesstoken") String accesstoken,
+			@PathParam("uid") String uid) throws Exception {
+		if(accesstoken!=null && accesstoken.equalsIgnoreCase(AppSettings.ACCESS_TOKEN)) {
+			log.info("deleteUserFromUAS/{}/delete/{} called", accesstoken, uid);
+			service.deleteUserLogonTimeFromUAS(uid);
 			return Response.ok("OK").build();
 		} else {
 			return Response.status(Status.FORBIDDEN).build();

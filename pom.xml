@@ -37,7 +37,7 @@
 		<resilience4j-circuitbreaker.version>2.2.0</resilience4j-circuitbreaker.version>
 		<apache.httpclient.version>4.5.14</apache.httpclient.version>
 		<hibernate-hikaricp.version>6.6.0.Final</hibernate-hikaricp.version>
-		<flyway.version>10.17.2</flyway.version>
+		<flyway.version>10.17.3</flyway.version>
 		<h2.version>2.3.232</h2.version>
 		<postgresql.version>42.7.4</postgresql.version>
 		<unirest-java.version>3.14.5</unirest-java.version>

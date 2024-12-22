@@ -42,7 +42,7 @@
 		<postgresql.version>42.7.4</postgresql.version>
 		<unirest-java.version>3.14.5</unirest-java.version>
 		<hibernate-core.version>6.6.4.Final</hibernate-core.version>
-		<freemarker.version>2.3.33</freemarker.version>
+		<freemarker.version>2.3.34</freemarker.version>
 		<!-- plugins -->
 		<maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
 		<maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>

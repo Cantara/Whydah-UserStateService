@@ -3,7 +3,7 @@
 
 	<groupId>net.whydah.uss</groupId>
 	<artifactId>UserStateService</artifactId>
-	<version>1.10.25</version>
+	<version>1.10.26-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>UserStateService</name>
@@ -20,7 +20,7 @@
 		<developerConnection>scm:git:ssh://git@github.com/cantara/Whydah-UserStateService.git</developerConnection>
 		<connection>scm:git:https://github.com/cantara/Whydah-UserStateService.git</connection>
 		<url>https://github.com/cantara/Whydah-UserStateService</url>
-		<tag>v1.10.25</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<properties>
 		<java.version>21</java.version>

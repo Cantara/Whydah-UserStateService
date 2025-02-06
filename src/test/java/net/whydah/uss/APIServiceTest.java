@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kong.unirest.Unirest;
 import net.whydah.sso.user.types.UserToken;
 import net.whydah.sso.whydah.DEFCON;
 import net.whydah.uss.entity.LoginUserStatusEntity;
@@ -29,7 +30,7 @@ import net.whydah.uss.service.module.WhydahClientModule;
 import net.whydah.uss.settings.AppSettings;
 import net.whydah.uss.util.EntityUtils;
 import net.whydah.uss.util.FluentHashMap;
-import net.whydah.uss.util.LogonTimeRepoter;
+import net.whydah.uss.util.LogonTimeReporter;
 
 public class APIServiceTest {
 	
@@ -78,26 +79,7 @@ public class APIServiceTest {
 		service.getRepositoryOldUser().deleteAll();
 	}
 	
-	@Test
-	public void testReceivingReportFromSTS() throws InterruptedException {
-		LogonTimeRepoter reporter = new LogonTimeRepoter(AppSettings.MY_URI, AppSettings.ACCESS_TOKEN);
-		String newuser_uid = UUID.randomUUID().toString();
-		UserToken u = new UserToken();
-		u.setCellPhone("999999999");
-		u.setDefcon(DEFCON.DEFCON5.name());
-		u.setEmail("misterhuydo@gmail.com");
-		u.setFirstName("huy");
-		u.setLastName("do");
-		u.setUid(newuser_uid);
-		u.setUserName("misterhuydo");
-		reporter.update(u);
-		
-		Thread.sleep(10000);
-		
-		//receive this report
-		assertTrue(service.getRepositoryLoginUserStatus().findById(newuser_uid).isPresent());
-		
-	}
+	
 	
 	@Disabled("will enable back if https://whydahdev.cantara.no/ is working again")
 	@Test
@@ -270,6 +252,48 @@ public class APIServiceTest {
 		
 		
 	}
+	
+	@Test
+	public void testSimulateDeletionFromUAS() {
+		LoginUserStatusEntity person = new LoginUserStatusEntity();
+		person.setId(UUID.randomUUID().toString());
+		person.setFirstName("Huy");
+		person.setLastName("Do");
+		person.setCellPhone("99999999");
+		person.setEmail("misterhuydo@gmail.com");
+		person.setLastLoginTime(LocalDateTime.now());
+		person.setPersonRef(UUID.randomUUID().toString());
+		person.setUsername("useradmin");
+		//CREATE
+		person = service.getRepositoryLoginUserStatus().insert(person);
+		
+		String ok = Unirest.delete(AppSettings.MY_URI.replaceFirst("/$", "") + "/api/" + AppSettings.ACCESS_TOKEN + "/delete/" +person.getId())
+				.contentType("application/json").accept("application/json").asString().getBody();
+		log.debug(ok);
+		
+	}
+	
+	@Test
+	public void testReceivingReportFromSTS() throws InterruptedException {
+		LogonTimeReporter reporter = new LogonTimeReporter(AppSettings.MY_URI, AppSettings.ACCESS_TOKEN);
+		String newuser_uid = UUID.randomUUID().toString();
+		UserToken u = new UserToken();
+		u.setCellPhone("999999999");
+		u.setDefcon(DEFCON.DEFCON5.name());
+		u.setEmail("misterhuydo@gmail.com");
+		u.setFirstName("huy");
+		u.setLastName("do");
+		u.setUid(newuser_uid);
+		u.setUserName("misterhuydo");
+		reporter.update(u);
+		
+		Thread.sleep(10000);
+		
+		//receive this report
+		assertTrue(service.getRepositoryLoginUserStatus().findById(newuser_uid).isPresent());
+		
+	}
+
 
 
 }

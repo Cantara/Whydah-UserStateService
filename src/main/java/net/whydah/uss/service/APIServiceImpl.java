@@ -50,12 +50,12 @@ public class APIServiceImpl extends APIService {
 			System.exit(0);	
 		} 
 	}
-
+	
 	private void runImportUserSchedule() {
 		ScheduledExecutorService scheduledExecutorService2 = Executors.newScheduledThreadPool(1);
 		scheduledExecutorService2.scheduleAtFixedRate(() -> {
 			getModuleImportUser().importUsers();
-		}, 0, 1, TimeUnit.HOURS);
+		}, 0, 24, TimeUnit.HOURS);
 	}
 
 
@@ -125,11 +125,17 @@ public class APIServiceImpl extends APIService {
 
 	@Override
 	public void deleteUserLogonTimeFromUAS(String uid) {
-		getRepositoryLoginUserStatus().deleteById(uid);
-		getRepositoryOldUser().deleteById(uid);
+		if(getRepositoryLoginUserStatus().findById(uid).isPresent()) {
+			getRepositoryLoginUserStatus().deleteById(uid);	
+		}
+		if(getRepositoryOldUser().findById(uid).isPresent()) {
+			getRepositoryOldUser().deleteById(uid);	
+		}
+		
 		//update app status
 		AppStateEntity en = getRepositoryAppState().get();
 		en.setStats_total_users_imported(en.getStats_total_users_imported() - 1);
+		en.setImportuser_page_index(1); //reset to force populating all users
 		getRepositoryAppState().update(en);
 	}
 

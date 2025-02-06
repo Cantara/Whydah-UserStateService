@@ -38,17 +38,19 @@ public class ImportUserModuleImpl implements ImportUserModule {
 
 		AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 		int current_page = app_state_en.getImportuser_page_index();
-		Long total_users_imported = api_service.getRepositoryLoginUserStatus().count();
-		doImport(current_page, Math.toIntExact(total_users_imported));
-
+		doImport(current_page);
+		
+	
 	}
 
-	private void doImport(int page, int newUserCount) {
+	private void doImport(int page) {
 		try {
 
 			UASUserQueryResult query_result = api_service.getModuleWhydahClient().fetchUsers(page);
 
-			boolean shouldStop = query_result.getTotalItems() < query_result.getPageSize() * page;
+			int maxPageCount = query_result.getTotalItems() / query_result.getPageSize();
+			
+			boolean shouldStop =  page > maxPageCount; // query_result.getTotalItems() < query_result.getPageSize() * page;
 
 			List<LoginUserStatusEntity> new_users = new ArrayList<LoginUserStatusEntity>();
 			for (UASUserIdentity x : query_result.getResult()) {
@@ -70,12 +72,12 @@ public class ImportUserModuleImpl implements ImportUserModule {
 			}
 
 			if (new_users.size() > 0) {
-				newUserCount = newUserCount + new_users.size();
+				
 				api_service.getRepositoryLoginUserStatus().insertAll(new_users);
 				
 				AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 				app_state_en.setImportuser_page_index(page);
-				app_state_en.setStats_total_users_imported(newUserCount);
+				app_state_en.setStats_total_users_imported(Math.toIntExact(api_service.getRepositoryLoginUserStatus().count()));
 				api_service.getRepositoryAppState().update(app_state_en);
 			}
 
@@ -85,9 +87,7 @@ public class ImportUserModuleImpl implements ImportUserModule {
 				} catch (InterruptedException e) {
 				}
 
-				doImport(++page, newUserCount);
-				
-				
+				doImport(++page);
 				
 			} else {
 

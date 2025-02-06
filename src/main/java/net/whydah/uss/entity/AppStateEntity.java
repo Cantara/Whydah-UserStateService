@@ -20,7 +20,7 @@ public class AppStateEntity implements Serializable  {
 	
 	//trace the last page index from fetching the users from UAS
 	//new CommandListUsersWithPagination(...)
-    protected int importuser_page_index;
+    protected int importuser_page_index = 1;
     
     //total users imported in the local DB
     protected int stats_total_users_imported;

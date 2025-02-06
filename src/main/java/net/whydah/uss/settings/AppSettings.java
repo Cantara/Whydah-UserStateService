@@ -6,7 +6,8 @@ public interface AppSettings extends HibernateJdbcSettings, MailSettings, Whydah
 
 	int THRESHOLD_FOR_OLD_USER_DETECTION_IN_MONTH = Integer.valueOf(MainApplication.instance.config().get("app.threshold_for_detecting_old_users_in_month", "3"));
 	int THRESHOLD_FOR_OLD_USER_REMOVAL_IN_MONTH = THRESHOLD_FOR_OLD_USER_DETECTION_IN_MONTH + 1;
-	int RECENT_LOGON_PERIOD_IN_DAY = Integer.valueOf(MainApplication.instance.config().get("app.recent_logon_period_in_day"));
+	int RECENT_LOGON_PERIOD_IN_DAY = Integer.valueOf(MainApplication.instance.config().get("app.recent_logon_period_in_day", "7"));
+	int RECENT_DELETED_PERIOD_IN_DAY = Integer.valueOf(MainApplication.instance.config().get("app.recent_deleted_period_in_day", "7"));
 	String MY_URI = MainApplication.instance.config().get("app.uri");
 	String ACCESS_TOKEN =  MainApplication.instance.config().get("app.accessToken");
 	int ERROR_LEVEL = 0;

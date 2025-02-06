@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import net.whydah.uss.MainApplication;
 import net.whydah.uss.entity.AppStateEntity;
+import net.whydah.uss.entity.DeletedUserEntity;
 import net.whydah.uss.entity.LoginUserStatusEntity;
 import net.whydah.uss.entity.OldUserEntity;
 import net.whydah.uss.service.APIService;
@@ -57,6 +58,7 @@ public class DetectOldUserModuleImpl implements DetectOldUserModule {
 		AppStateEntity en = api_service.getRepositoryAppState().get();
 		en.setStats_number_of_old_users_detected(oldUsers.size() + en.getStats_number_of_old_users_detected());
 		api_service.getRepositoryAppState().update(en);
+
 		
 		return oldUsers;
 	}

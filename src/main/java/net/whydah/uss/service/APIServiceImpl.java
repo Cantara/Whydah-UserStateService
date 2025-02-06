@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import net.whydah.sso.user.types.UserIdentity;
 import net.whydah.uss.entity.AppStateEntity;
+import net.whydah.uss.entity.DeletedUserEntity;
 import net.whydah.uss.entity.LoginUserStatusEntity;
 import net.whydah.uss.entity.OldUserEntity;
 import net.whydah.uss.repository.AppStateRepository;
@@ -124,9 +125,34 @@ public class APIServiceImpl extends APIService {
 	}
 
 	@Override
+	public long getNumberOfRecentDeletedUsers() {
+		return getRepositoryDeletedUser().getNumberOfRecentDeletedUsers(LocalDateTime.now().minusDays(AppSettings.RECENT_DELETED_PERIOD_IN_DAY));
+	}
+	
+	@Override
 	public void deleteUserLogonTimeFromUAS(String uid) {
-		if(getRepositoryLoginUserStatus().findById(uid).isPresent()) {
-			getRepositoryLoginUserStatus().deleteById(uid);	
+		Optional<LoginUserStatusEntity> userOpt = getRepositoryLoginUserStatus().findById(uid);
+		if(userOpt.isPresent()) {
+			//move to deleted user table
+			LoginUserStatusEntity user = userOpt.get();
+			DeletedUserEntity deletedUser = new DeletedUserEntity();
+			deletedUser.setCellPhone(user.getCellPhone());
+			deletedUser.setCreationTime(LocalDateTime.now());
+			deletedUser.setEmail(user.getEmail());
+			deletedUser.setFirstName(user.getFirstName());
+			deletedUser.setId(uid);
+			deletedUser.setLastLoginTime(user.getLastLoginTime());
+			deletedUser.setLastName(user.getLastName());
+			deletedUser.setPersonRef(user.getPersonRef());
+			deletedUser.setRegistrationTime(user.getCreationTime());
+			deletedUser.setUsername(user.getUsername());
+			getRepositoryDeletedUser().insert(deletedUser);
+			
+			//delete
+			getRepositoryLoginUserStatus().deleteById(uid);
+			
+			
+			
 		}
 		if(getRepositoryOldUser().findById(uid).isPresent()) {
 			getRepositoryOldUser().deleteById(uid);	
@@ -136,6 +162,7 @@ public class APIServiceImpl extends APIService {
 		AppStateEntity en = getRepositoryAppState().get();
 		en.setStats_total_users_imported(en.getStats_total_users_imported() - 1);
 		en.setImportuser_page_index(1); //reset to force populating all users
+		
 		getRepositoryAppState().update(en);
 	}
 

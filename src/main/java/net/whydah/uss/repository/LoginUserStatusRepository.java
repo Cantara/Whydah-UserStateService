@@ -24,13 +24,13 @@ public class LoginUserStatusRepository extends CRUDRepository<LoginUserStatusEnt
 	}
 	
 	public List<LoginUserStatusEntity> detectOldUsers(LocalDateTime olderThanThisDate) {
-		return findWithQuery("SELECT a FROM LoginUserStatusEntity a WHERE a.lastLoginTime <= :date AND a.oldLogonDetected = false", 
-				FluentHashMap.map("date", olderThanThisDate));
+		return findWithQuery("SELECT a FROM LoginUserStatusEntity a WHERE a.lastLoginTime <= :thedate AND a.oldLogonDetected = false", 
+				FluentHashMap.map("thedate", olderThanThisDate));
 	}
 	
 	public long getNumberOfRecentLogins(LocalDateTime newerThanThisDate) {
-		return countWithQuery("SELECT count(*) FROM LoginUserStatusEntity a WHERE a.lastLoginTime > :date", 
-				FluentHashMap.map("date", newerThanThisDate));
+		return countWithQuery("SELECT count(*) FROM LoginUserStatusEntity a WHERE a.lastLoginTime > :thedate", 
+				FluentHashMap.map("thedate", newerThanThisDate));
 	}
 	
 	

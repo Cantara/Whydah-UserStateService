@@ -36,6 +36,7 @@ public class AppStateEntity implements Serializable  {
     
     //trace number of users comming back
     protected int stats_number_of_old_users_comming_back;
+ 
     
 
 }

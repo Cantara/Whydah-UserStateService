@@ -270,6 +270,7 @@ public class APIServiceTest {
 		String ok = Unirest.delete(AppSettings.MY_URI.replaceFirst("/$", "") + "/api/" + AppSettings.ACCESS_TOKEN + "/delete/" +person.getId())
 				.contentType("application/json").accept("application/json").asString().getBody();
 		log.debug(ok);
+		assertTrue(service.getRepositoryDeletedUser().findById(person.getId()).isPresent());
 		
 	}
 	
@@ -291,6 +292,7 @@ public class APIServiceTest {
 		
 		//receive this report
 		assertTrue(service.getRepositoryLoginUserStatus().findById(newuser_uid).isPresent());
+		
 		
 	}
 

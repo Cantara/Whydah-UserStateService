@@ -83,6 +83,7 @@ public class UIResource {
     		model.put("accesstoken", AppSettings.ACCESS_TOKEN);
         	model.put("app_state", en);
         	model.put("number_of_recent_logins", String.valueOf(service.getNumberOfRecentLogins()) + " logins in " + AppSettings.RECENT_LOGON_PERIOD_IN_DAY + " days" );
+        	model.put("number_of_recent_deleted_users", String.valueOf(service.getNumberOfRecentLogins()) + " deleted in " + AppSettings.RECENT_DELETED_PERIOD_IN_DAY + " days" );
         	model.put("templateparams", EntityUtils.object_mapToJsonString(
         			FluentHashMap.map("username", "9999999")
         			.with("firstname", "John")

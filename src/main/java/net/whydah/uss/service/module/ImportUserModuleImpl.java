@@ -33,13 +33,18 @@ public class ImportUserModuleImpl implements ImportUserModule {
 	public ImportUserModuleImpl(APIService service) {
 		this.api_service = service;
 	}
+	
+	private boolean isRunning = false;
 
 	public void importUsers() {
 
-		AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
-		int current_page = app_state_en.getImportuser_page_index();
-		doImport(current_page);
-		
+		if(!isRunning) {
+			isRunning = true;
+			AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
+			int current_page = app_state_en.getImportuser_page_index();
+			doImport(current_page);
+			isRunning = false;
+		}
 	
 	}
 
@@ -47,6 +52,12 @@ public class ImportUserModuleImpl implements ImportUserModule {
 		try {
 
 			UASUserQueryResult query_result = api_service.getModuleWhydahClient().fetchUsers(page);
+			
+			while(query_result==null) {
+				Thread.sleep(30000);
+				//rereun
+				query_result = api_service.getModuleWhydahClient().fetchUsers(page);
+			}
 
 			int maxPageCount = query_result.getTotalItems() / query_result.getPageSize();
 			

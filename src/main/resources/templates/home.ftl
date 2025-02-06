@@ -22,9 +22,10 @@
           <ul class="list-group">
 		  <li class="list-group-item list-group-item-primary">Total users imported: ${app_state.stats_total_users_imported}</li>
 		  <li class="list-group-item list-group-item-success">Recent logins: ${number_of_recent_logins}</li>
-		   <li class="list-group-item list-group-item-info">Total old users coming back: ${app_state.stats_number_of_old_users_comming_back}</li>
+		  <li class="list-group-item list-group-item-danger">Recent deleted users: ${number_of_recent_deleted_users}</li>
+		  <li class="list-group-item list-group-item-info">Total old users coming back: ${app_state.stats_number_of_old_users_comming_back}</li>
 		  <li class="list-group-item list-group-item-warning">Total old users detected: ${app_state.stats_number_of_old_users_detected}</li>
-		  <li class="list-group-item list-group-item-danger">Total old users removed: ${app_state.stats_number_of_old_users_removed}</li>
+		  <li class="list-group-item list-group-item-dark">Total old users removed: ${app_state.stats_number_of_old_users_removed}</li>
 		  <li class="list-group-item list-group-item-secondary">Total email sent: ${app_state.stats_number_of_mails_sent}</li>
 		  <li class="list-group-item list-group-item-light">
 		  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mail-sending">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.whydah.sso.user.types.UserIdentity;
 import net.whydah.uss.repository.AppStateRepository;
+import net.whydah.uss.repository.DeletedUserRepository;
 import net.whydah.uss.repository.LoginUserStatusRepository;
 import net.whydah.uss.repository.OldUserRepository;
 import net.whydah.uss.service.module.DetectOldUserModule;
@@ -24,6 +25,7 @@ public abstract class APIService {
 	LoginUserStatusRepository loginUserStatusRepository = new LoginUserStatusRepository();
 	AppStateRepository appStateRepository = new AppStateRepository();
 	OldUserRepository oldUserRepository = new OldUserRepository();
+	DeletedUserRepository deletedUserRepository = new DeletedUserRepository();
 	
 	ImportUserModule importUserModule = new ImportUserModuleImpl(this);
 	DetectOldUserModule detectOldUserModule = new DetectOldUserModuleImpl(this);
@@ -41,6 +43,10 @@ public abstract class APIService {
 	
 	public OldUserRepository getRepositoryOldUser() {
 		return oldUserRepository;
+	}
+	
+	public DeletedUserRepository getRepositoryDeletedUser() {
+		return deletedUserRepository;
 	}
 	
 	
@@ -86,6 +92,10 @@ public abstract class APIService {
 	public abstract long getNumberOfRecentLogins();
 
 	public abstract void deleteUserLogonTimeFromUAS(String uid);
+
+	public abstract long getNumberOfRecentDeletedUsers();
+
+
 
 
 }

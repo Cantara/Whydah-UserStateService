@@ -1,6 +1,7 @@
 package net.whydah.uss.service.module;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -56,6 +57,7 @@ public class NotifyOldUserModuleImpl implements NotifyOldUserModule {
 		
 		AppStateEntity en = api_service.getRepositoryAppState().get();
 		en.setStats_number_of_mails_sent(sentCount + en.getStats_number_of_mails_sent());
+		en.setLast_updated(LocalDateTime.now());
 		api_service.getRepositoryAppState().update(en);
 		
 	}

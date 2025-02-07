@@ -22,6 +22,7 @@ CREATE INDEX idx_last_login_time_login_user_status ON LOGIN_USER_STATUS(last_log
         stats_number_of_mails_sent INTEGER DEFAULT 0,
         stats_number_of_old_users_removed INTEGER DEFAULT 0,
         stats_number_of_old_users_comming_back INTEGER DEFAULT 0,
+        last_updated TIMESTAMP,
         primary key (id)
 );
 

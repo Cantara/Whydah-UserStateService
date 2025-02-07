@@ -87,6 +87,7 @@ public class APIServiceImpl extends APIService {
 				//update app state
 				AppStateEntity appstate = getRepositoryAppState().get();
 				appstate.setStats_number_of_old_users_comming_back(appstate.getStats_number_of_old_users_comming_back() + 1);
+				appstate.setLast_updated(LocalDateTime.now());
 				getRepositoryAppState().update(appstate);
 			}
 			
@@ -162,6 +163,7 @@ public class APIServiceImpl extends APIService {
 		AppStateEntity en = getRepositoryAppState().get();
 		en.setStats_total_users_imported(en.getStats_total_users_imported() - 1);
 		en.setImportuser_page_index(1); //reset to force populating all users
+		en.setLast_updated(LocalDateTime.now());
 		
 		getRepositoryAppState().update(en);
 	}

@@ -12,13 +12,15 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+   
 </head>
 <body>
 <div class="container container-fluid">
 	<h1>User State Service</h1>
+	
 	<p>
 	<#if accesstoken??>
+         
           <ul class="list-group">
 		  <li class="list-group-item list-group-item-primary">Total users imported: ${app_state.stats_total_users_imported}</li>
 		  <li class="list-group-item list-group-item-success">Recent logins: ${number_of_recent_logins}</li>
@@ -37,6 +39,7 @@
   		  
 		  
 		   </ul>
+		    <i class="float-end">Last updated: ${(app_state.last_updated).format('yyyy-MM-dd HH:mm:ss')}</i>
 		   
 		   <#if response_test_mail_sending??>
 			    <#assign ok = (response_test_mail_sending == 'Send succeeded')>

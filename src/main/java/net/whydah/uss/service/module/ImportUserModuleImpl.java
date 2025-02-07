@@ -3,26 +3,16 @@ package net.whydah.uss.service.module;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kong.unirest.Unirest;
-import net.whydah.sso.application.types.ApplicationCredential;
-import net.whydah.sso.session.WhydahApplicationSession2;
-import net.whydah.sso.user.helpers.UserXpathHelper;
-import net.whydah.sso.user.types.UserCredential;
-import net.whydah.sso.user.types.UserIdentity;
-import net.whydah.sso.util.WhydahUtil2;
-import net.whydah.uss.MainApplication;
 import net.whydah.uss.entity.AppStateEntity;
 import net.whydah.uss.entity.LoginUserStatusEntity;
 import net.whydah.uss.model.UASUserIdentity;
 import net.whydah.uss.model.UASUserQueryResult;
 import net.whydah.uss.service.APIService;
 import net.whydah.uss.settings.AppSettings;
-import no.cantara.config.ApplicationProperties;
 
 public class ImportUserModuleImpl implements ImportUserModule {
 
@@ -89,6 +79,7 @@ public class ImportUserModuleImpl implements ImportUserModule {
 				AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 				app_state_en.setImportuser_page_index(page);
 				app_state_en.setStats_total_users_imported(Math.toIntExact(api_service.getRepositoryLoginUserStatus().count()));
+				app_state_en.setLast_updated(LocalDateTime.now());
 				api_service.getRepositoryAppState().update(app_state_en);
 			}
 
@@ -105,6 +96,7 @@ public class ImportUserModuleImpl implements ImportUserModule {
 				AppStateEntity app_state_en = api_service.getRepositoryAppState().get();
 				app_state_en.setImportuser_page_index(page);
 				app_state_en.setStats_total_users_imported(Math.toIntExact(api_service.getRepositoryLoginUserStatus().count()));
+				app_state_en.setLast_updated(LocalDateTime.now());
 				api_service.getRepositoryAppState().update(app_state_en);
 				
 			}

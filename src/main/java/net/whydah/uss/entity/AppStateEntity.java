@@ -1,6 +1,7 @@
 package net.whydah.uss.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UuidGenerator;
 
@@ -37,6 +38,6 @@ public class AppStateEntity implements Serializable  {
     //trace number of users comming back
     protected int stats_number_of_old_users_comming_back;
  
-    
+    protected LocalDateTime last_updated;
 
 }

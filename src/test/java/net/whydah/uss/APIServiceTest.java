@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import kong.unirest.Unirest;
 import net.whydah.sso.user.types.UserToken;
 import net.whydah.sso.whydah.DEFCON;
 import net.whydah.uss.entity.LoginUserStatusEntity;
@@ -30,6 +29,7 @@ import net.whydah.uss.service.module.WhydahClientModule;
 import net.whydah.uss.settings.AppSettings;
 import net.whydah.uss.util.EntityUtils;
 import net.whydah.uss.util.FluentHashMap;
+import net.whydah.uss.util.HttpConnectionHelper;
 import net.whydah.uss.util.LogonTimeReporter;
 
 public class APIServiceTest {
@@ -267,8 +267,8 @@ public class APIServiceTest {
 		//CREATE
 		person = service.getRepositoryLoginUserStatus().insert(person);
 		
-		String ok = Unirest.delete(AppSettings.MY_URI.replaceFirst("/$", "") + "/api/" + AppSettings.ACCESS_TOKEN + "/delete/" +person.getId())
-				.contentType("application/json").accept("application/json").asString().getBody();
+		String ok = HttpConnectionHelper.delete(AppSettings.MY_URI.replaceFirst("/$", "") + "/api/" + AppSettings.ACCESS_TOKEN + "/delete/" +person.getId())
+				.getContent();
 		log.debug(ok);
 		assertTrue(service.getRepositoryDeletedUser().findById(person.getId()).isPresent());
 		

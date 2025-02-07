@@ -344,23 +344,26 @@
 			<version>${hibernate-hikaricp.version}</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/com.konghq/unirest-java -->
-		<dependency>
-		    <groupId>com.konghq</groupId>
-		    <artifactId>unirest-java</artifactId>
-		    <version>${unirest-java.version}</version>
-		</dependency>
+		
+		<!--
 		<dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
-        </dependency>
+        </dependency> -->
         <!-- https://mvnrepository.com/artifact/org.jboss.jandex/jandex-maven-plugin -->
 		<dependency>
 		    <groupId>org.jboss.jandex</groupId>
 		    <artifactId>jandex-maven-plugin</artifactId>
 		    <version>1.2.3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/no.api.freemarker/freemarker-java8 -->
+		<dependency>
+		    <groupId>no.api.freemarker</groupId>
+		    <artifactId>freemarker-java8</artifactId>
+		    <version>3.0.1</version>
+		</dependency>
+				
         
 	</dependencies>
 

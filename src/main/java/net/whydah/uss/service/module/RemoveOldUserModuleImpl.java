@@ -54,6 +54,7 @@ public class RemoveOldUserModuleImpl implements RemoveOldUserModule {
 			// update app state
 			AppStateEntity en = api_service.getRepositoryAppState().get();
 			en.setStats_number_of_old_users_removed(en.getStats_number_of_old_users_removed() + affected_uids.size());
+			en.setLast_updated(LocalDateTime.now());
 			api_service.getRepositoryAppState().update(en);
 
 		}

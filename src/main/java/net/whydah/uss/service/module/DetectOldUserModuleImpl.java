@@ -57,6 +57,7 @@ public class DetectOldUserModuleImpl implements DetectOldUserModule {
 		//update app state
 		AppStateEntity en = api_service.getRepositoryAppState().get();
 		en.setStats_number_of_old_users_detected(oldUsers.size() + en.getStats_number_of_old_users_detected());
+		en.setLast_updated(LocalDateTime.now());
 		api_service.getRepositoryAppState().update(en);
 
 		

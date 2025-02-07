@@ -21,7 +21,7 @@ public class DeletedUserRepository extends CRUDRepository<DeletedUserEntity, Str
 		return countWithQuery("SELECT count(*) FROM DeletedUserEntity a WHERE a.creationTime > :fromDate", 
 				FluentHashMap.map("fromDate", newerThanThisDate));
 	}
-	
+
 	
 	
 	

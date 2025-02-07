@@ -190,7 +190,8 @@ public abstract class Repository<T, K> {
 			public List<String> getManagedClassNames() {
 				return Arrays.asList("net.whydah.uss.entity.AppStateEntity",
 						"net.whydah.uss.entity.LoginUserStatusEntity", 
-						"net.whydah.uss.entity.OldUserEntity"
+						"net.whydah.uss.entity.OldUserEntity",
+						"net.whydah.uss.entity.DeletedUserEntity"
 						);
 			}
 

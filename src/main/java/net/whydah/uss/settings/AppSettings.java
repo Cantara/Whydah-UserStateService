@@ -11,7 +11,7 @@ public interface AppSettings extends HibernateJdbcSettings, MailSettings, Whydah
 	String MY_URI = MainApplication.instance.config().get("app.uri");
 	String ACCESS_TOKEN =  MainApplication.instance.config().get("app.accessToken");
 	int ERROR_LEVEL = 0;
-	int TIME_WAIT_FOR_USER_FETCH_WITH_PAGINATION_FROM_UAS_IN_MILLISECONDS = 5000;
+	int TIME_WAIT_FOR_USER_FETCH_WITH_PAGINATION_FROM_UAS_IN_MILLISECONDS = 10000;
 	int TIME_WAIT_FOR_USER_DELETE_IN_MILLISECONDS = 5000;
 	
 }

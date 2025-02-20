@@ -43,10 +43,8 @@ public class ImportUserModuleImpl implements ImportUserModule {
 
 			UASUserQueryResult query_result = api_service.getModuleWhydahClient().fetchUsers(page);
 			
-			while(query_result==null) {
-				Thread.sleep(30000);
-				//rereun
-				query_result = api_service.getModuleWhydahClient().fetchUsers(page);
+			if(query_result==null) {
+				return;
 			}
 
 			int maxPageCount = query_result.getTotalItems() / query_result.getPageSize();

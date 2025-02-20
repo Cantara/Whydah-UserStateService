@@ -3,7 +3,7 @@
 
 	<groupId>net.whydah.uss</groupId>
 	<artifactId>UserStateService</artifactId>
-	<version>1.10.31</version>
+	<version>1.11.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>UserStateService</name>

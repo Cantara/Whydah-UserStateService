@@ -36,12 +36,12 @@
         <resilience4j-basecommands.version>0.8.39</resilience4j-basecommands.version>
         <resilience4j-circuitbreaker.version>2.3.0</resilience4j-circuitbreaker.version>
         <apache.httpclient.version>4.5.14</apache.httpclient.version>
-        <hibernate-hikaricp.version>6.6.12.Final</hibernate-hikaricp.version>
+        <hibernate-hikaricp.version>6.6.13.Final</hibernate-hikaricp.version>
         <flyway.version>10.22.0</flyway.version>
         <h2.version>2.3.232</h2.version>
         <postgresql.version>42.7.5</postgresql.version>
         <unirest-java.version>3.14.5</unirest-java.version>
-        <hibernate-core.version>6.6.12.Final</hibernate-core.version>
+        <hibernate-core.version>6.6.13.Final</hibernate-core.version>
         <freemarker.version>2.3.34</freemarker.version>
         <!-- plugins -->
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>

@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
 
     <name>UserStateService</name>
-    <description />
+    <description/>
     <!-- FIXME change it to the project's website -->
     <url>https://wiki.cantara.no/display/iam/Whydah-UserStateService</url>
 
@@ -36,7 +36,7 @@
         <resilience4j-basecommands.version>0.8.41</resilience4j-basecommands.version>
         <resilience4j-circuitbreaker.version>2.3.0</resilience4j-circuitbreaker.version>
         <apache.httpclient.version>4.5.14</apache.httpclient.version>
-        <hibernate-hikaricp.version>6.6.26.Final</hibernate-hikaricp.version>
+        <hibernate-hikaricp.version>7.0.8.Final</hibernate-hikaricp.version>
         <flyway.version>10.22.0</flyway.version>
         <h2.version>2.3.232</h2.version>
         <postgresql.version>42.7.7</postgresql.version>
@@ -536,8 +536,8 @@
 
                             </filters>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>${mainClass}</mainClass>
                                 </transformer>

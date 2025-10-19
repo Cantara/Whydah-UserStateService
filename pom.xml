@@ -31,7 +31,7 @@
 
         <!-- 3rd party -->
         <slf4j.version>2.0.17</slf4j.version>
-        <logback.version>1.5.19</logback.version>
+        <logback.version>1.5.20</logback.version>
         <logstash-logback-encoder.version>8.1</logstash-logback-encoder.version>
         <resilience4j-basecommands.version>0.8.49</resilience4j-basecommands.version>
         <resilience4j-circuitbreaker.version>2.3.0</resilience4j-circuitbreaker.version>
@@ -102,7 +102,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.19</version>
+            <version>1.5.20</version>
         </dependency>
 
         <dependency>

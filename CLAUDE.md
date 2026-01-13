@@ -161,11 +161,27 @@ Keep entries concise but informative. Include file references when relevant.
 
 ### Known Gotchas and Issues
 
-*(Document issues discovered here)*
+**Lombok Annotation Processing (Fixed)**
+- **Issue**: Lombok `@Data` annotations on entity classes weren't generating getters/setters, causing compilation errors
+- **Root Cause**: Maven compiler plugin wasn't configured to use Lombok as an annotation processor
+- **Fixed In**: pom.xml:456-462
+
+**Hibernate Validator + jboss-logging Version Conflict (Fixed)**
+- **Issue**: `NoSuchMethodError` at runtime during tests: `org.jboss.logging.Logger.getMessageLogger(MethodHandles$Lookup...)`
+- **Root Cause**: Hibernate Validator 9.1.0 requires jboss-logging 3.6.0+, but resteasy-jaxrs was bringing in 3.4.1.Final
+- **Fixed In**: pom.xml:367-372 (explicit dependency on jboss-logging 3.6.1.Final)
 
 ### Solutions and Workarounds
 
-*(Document solutions here)*
+**Enabling Lombok Annotation Processing**
+- Added `<annotationProcessorPaths>` configuration to maven-compiler-plugin
+- Explicitly includes Lombok 1.18.42 as annotation processor
+- See pom.xml:456-462
+
+**Resolving Dependency Version Conflicts**
+- When you see `NoSuchMethodError` at runtime, check for transitive dependency version conflicts
+- Use `mvn dependency:tree -Dincludes=groupId:artifactId` to trace dependency sources
+- Add explicit dependency with newer version to override transitive ones
 
 ### Architectural Insights
 

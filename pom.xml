@@ -100,6 +100,12 @@
                 <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.annotations.version}</version>
             </dependency>
+            <!-- Override transitive property-config version — 0.9.18 is not published -->
+            <dependency>
+                <groupId>no.cantara.config</groupId>
+                <artifactId>property-config</artifactId>
+                <version>0.9.22</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

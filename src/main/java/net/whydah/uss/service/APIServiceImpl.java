@@ -65,7 +65,7 @@ public class APIServiceImpl extends APIService {
 		scheduledExecutorService2.scheduleAtFixedRate(() -> {
 			getModuleDetectOldUser().detectOldUsers();
 			getNotifyOldUserModule().checkAndSendNotifications();
-		}, 0, 1, TimeUnit.DAYS);
+		}, 0, 15, TimeUnit.DAYS);
 	}
 	
 	private void runRemoveOldUserSchedule() {

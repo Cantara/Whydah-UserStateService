@@ -47,7 +47,9 @@ public class NotifyOldUserModuleImpl implements NotifyOldUserModule {
 					user.setNotified(true);
 					api_service.getRepositoryOldUser().update(user);
 					sentCount ++;
+					Thread.sleep(30000);
 				}
+				
 				
 			} catch (Exception ex) {
 				logger.error("unexpected error", ex);

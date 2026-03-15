@@ -1,0 +1,24 @@
+kcp_version: "0.11"
+project: UserStateService
+description: "Whydah-UserStateService (USS) is a service within the Whydah ecosystem that manages and tracks user state information. It provides functionality for monitoring user login statuses, handling old and..."
+version: "0.1.0"
+updated: "2026-03-15"
+
+units:
+  - id: readme
+    path: README.md
+    intent: "Whydah-UserStateService"
+    scope: global
+    audience: [human, agent]
+    validated: "2026-03-15"
+    hints:
+      token_estimate: 1000
+
+  - id: claude
+    path: CLAUDE.md
+    intent: "CLAUDE.md"
+    scope: global
+    audience: [human, agent]
+    validated: "2026-03-15"
+    hints:
+      token_estimate: 2100

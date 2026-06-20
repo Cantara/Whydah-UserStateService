@@ -1,8 +1,11 @@
 kcp_version: "0.21"
 project: UserStateService
-description: "Whydah-UserStateService (USS) is a service within the Whydah ecosystem that manages and tracks user state information. It provides functionality for monitoring user login statuses, handling old and..."
+description: "Whydah-UserStateService (USS) is a service within the Whydah ecosystem\
+  \ that manages and tracks user state information. It provides functionality for\
+  \ monitoring user login statuses, handling old and..."
 version: "0.1.0"
 updated: "2026-06-20"
+not_for: []
 temporal:
   valid_from: "2026-03-19"
 signing:
@@ -10,28 +13,26 @@ signing:
   scope: this-manifest
   public_key: "MCowBQYDK2VwAyEAuipgusnqU9vjf3p2yPVLD/DmERT6tBbLOqEETdxAhMU="
   signature: "https://raw.githubusercontent.com/Cantara/Whydah-UserStateService/main/knowledge.yaml.sig"
-
 units:
-  - id: readme
-    path: README.md
-    intent: "Whydah-UserStateService"
-    scope: global
-    audience: [human, agent]
-    validated: "2026-03-15"
-    hints:
-      token_estimate: 1000
-      content_hash:
-        algorithm: sha256
-        value: ""
-
-  - id: claude
-    path: CLAUDE.md
-    intent: "CLAUDE.md"
-    scope: global
-    audience: [human, agent]
-    validated: "2026-03-15"
-    hints:
-      token_estimate: 2100
-      content_hash:
-        algorithm: sha256
-        value: ""
+- id: readme
+  path: README.md
+  intent: "Whydah-UserStateService"
+  scope: global
+  audience: [human, agent]
+  validated: "2026-03-15"
+  hints:
+    token_estimate: 1000
+  content_hash:
+    algorithm: sha256
+    value: ""
+- id: claude
+  path: CLAUDE.md
+  intent: "CLAUDE.md"
+  scope: global
+  audience: [human, agent]
+  validated: "2026-03-15"
+  hints:
+    token_estimate: 2100
+  content_hash:
+    algorithm: sha256
+    value: ""

@@ -60,7 +60,7 @@
         -->
         <jackson3.version>3.1.0</jackson3.version>
 
-        <jackson.annotations.version>2.21</jackson.annotations.version>
+        <jackson.annotations.version>2.22</jackson.annotations.version>
 
         <resilience4j-basecommands.version>0.8.58</resilience4j-basecommands.version>
         <resilience4j-circuitbreaker.version>2.4.0</resilience4j-circuitbreaker.version>

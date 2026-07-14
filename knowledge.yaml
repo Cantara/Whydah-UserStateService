@@ -1,4 +1,4 @@
-kcp_version: "0.21"
+kcp_version: "0.26"
 project: UserStateService
 description: "Whydah-UserStateService (USS) is a service within the Whydah ecosystem\
   \ that manages and tracks user state information. It provides functionality for\
@@ -22,9 +22,6 @@ units:
   validated: "2026-03-15"
   hints:
     token_estimate: 1000
-  content_hash:
-    algorithm: sha256
-    value: ""
 - id: claude
   path: CLAUDE.md
   intent: "CLAUDE.md"
@@ -33,6 +30,11 @@ units:
   validated: "2026-03-15"
   hints:
     token_estimate: 2100
-  content_hash:
-    algorithm: sha256
-    value: ""
+
+# Serving Endpoint Binding (KCP SPEC v0.26 §3.12): authoritative manifest URL
+# and authorized MCP representative. Ignored by pre-0.26 verifiers.
+serving:
+  manifest:
+    - https://raw.githubusercontent.com/Cantara/Whydah-UserStateService/main/knowledge.yaml
+  mcp:
+    - https://mcp.cantara.no/mcp

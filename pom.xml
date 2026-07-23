@@ -31,7 +31,7 @@
         <stingray.version>1.21.16</stingray.version>
 
         <slf4j.version>2.0.18</slf4j.version>
-        <logback.version>1.5.38</logback.version>
+        <logback.version>1.6.0</logback.version>
         <logstash-logback-encoder.version>9.0</logstash-logback-encoder.version>
 
         <!--

@@ -63,7 +63,8 @@
         <resilience4j-basecommands.version>0.8.58</resilience4j-basecommands.version>
         <resilience4j-circuitbreaker.version>2.4.0</resilience4j-circuitbreaker.version>
         <apache.httpclient.version>4.5.14</apache.httpclient.version>
-        <hibernate-hikaricp.version>7.4.5.Final</hibernate-hikaricp.version>
+        <!-- hibernate-hikaricp is versioned via ${hibernate-core.version} (below) so
+             the two can never diverge across a Hibernate major (see the dependency). -->
         <flyway.version>10.22.0</flyway.version>
         <h2.version>2.4.240</h2.version>
         <postgresql.version>42.7.13</postgresql.version>
@@ -578,7 +579,11 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-hikaricp</artifactId>
-            <version>${hibernate-hikaricp.version}</version>
+            <!-- MUST track hibernate-core: the HikariCP provider and core share
+                 internal SPI (e.g. ConnectionProviderConfigurationException).
+                 A split (core 6.6 + hikaricp 7.4) is a runtime NoClassDefFoundError.
+                 One property so Renovate can never move them apart. -->
+            <version>${hibernate-core.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>

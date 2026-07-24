@@ -8,6 +8,12 @@
       "matchManagers": ["maven"],
       "matchPackageNames": ["org.apache.maven.plugins:maven-surefire-plugin"],
       "enabled": false
+    },
+    {
+      "description": "hibernate-core and hibernate-hikaricp share internal SPI and MUST move in lockstep (a 6.6 + 7.4 split is a runtime NoClassDefFoundError). The pom now versions both from one property, and a Hibernate major is a code migration, not an auto-bump. Keep Renovate from proposing org.hibernate majors; minor/patch still flow. Remove only together with a real Hibernate 7 migration.",
+      "matchPackagePatterns": ["^org\\.hibernate(\\.|:)"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ]
 }

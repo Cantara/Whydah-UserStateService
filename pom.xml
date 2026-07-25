@@ -65,7 +65,7 @@
         <apache.httpclient.version>4.5.14</apache.httpclient.version>
         <!-- hibernate-hikaricp is versioned via ${hibernate-core.version} (below) so
              the two can never diverge across a Hibernate major (see the dependency). -->
-        <flyway.version>13.0.0</flyway.version>
+        <flyway.version>13.0.1</flyway.version>
         <h2.version>2.4.240</h2.version>
         <postgresql.version>42.7.13</postgresql.version>
         <unirest-java.version>3.14.5</unirest-java.version>

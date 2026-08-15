@@ -69,7 +69,7 @@
         <h2.version>2.4.240</h2.version>
         <postgresql.version>42.7.13</postgresql.version>
         <unirest-java.version>3.14.5</unirest-java.version>
-        <hibernate-core.version>6.6.44.Final</hibernate-core.version>
+        <hibernate-core.version>6.6.55.Final</hibernate-core.version>
         <freemarker.version>2.3.34</freemarker.version>
         <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
         <maven-surefire-plugin.version>3.5.6</maven-surefire-plugin.version>
@@ -557,7 +557,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-core.version}</version>
             <exclusions>
@@ -577,7 +577,7 @@
             <version>9.1.2.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-hikaricp</artifactId>
             <!-- MUST track hibernate-core: the HikariCP provider and core share
                  internal SPI (e.g. ConnectionProviderConfigurationException).

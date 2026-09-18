@@ -226,6 +226,15 @@
             <artifactId>stingray-application-security</artifactId>
             <version>${stingray.version}</version>
             <exclusions>
+                <!-- junit:junit 3.8.1 leaks in via stingray-application-security >
+                     stingray-security > Whydah-Java-SDK > http-request2 > maven-gpg-plugin.
+                     On the classpath it makes surefire 3.6 start the JUnit Vintage engine,
+                     which rejects JUnit 3 and aborts test discovery. The tests here use
+                     JUnit Jupiter only. -->
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>com.fasterxml.jackson.core</groupId>
                     <artifactId>jackson-databind</artifactId>

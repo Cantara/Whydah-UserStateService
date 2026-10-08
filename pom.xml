@@ -67,7 +67,7 @@
              the two can never diverge across a Hibernate major (see the dependency). -->
         <flyway.version>10.22.0</flyway.version>
         <h2.version>2.5.250</h2.version>
-        <postgresql.version>42.7.13</postgresql.version>
+        <postgresql.version>42.7.14</postgresql.version>
         <unirest-java.version>3.14.5</unirest-java.version>
         <hibernate-core.version>6.6.44.Final</hibernate-core.version>
         <freemarker.version>2.3.34</freemarker.version>

@@ -2,8 +2,10 @@ package net.whydah.uss.resource;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import net.whydah.sso.user.types.UserIdentity;
+import net.whydah.uss.entity.LoginUserStatusEntity;
 import net.whydah.uss.service.APIService;
 import net.whydah.uss.settings.AppSettings;
 import net.whydah.uss.util.EntityUtils;
@@ -64,6 +67,31 @@ public class APIResource {
 		
 	}
 	
+	/**
+	 * Login status for one user, for UserAdminWebApp's GDPR access (innsyn) report: when this service first saw the
+	 * user (import or first login after it went live) and the last login STS reported.
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/{accesstoken}/user/{uid}")
+	public Response getLoginStatus(@Context HttpServletRequest request,
+			@PathParam("accesstoken") String accesstoken,
+			@PathParam("uid") String uid) throws Exception {
+		if (accesstoken == null || !accesstoken.equalsIgnoreCase(AppSettings.ACCESS_TOKEN)) {
+			return Response.status(Status.FORBIDDEN).build();
+		}
+		log.info("getLoginStatus called for uid {}", uid);
+		Optional<LoginUserStatusEntity> status = service.getRepositoryLoginUserStatus().findById(uid);
+		if (status.isEmpty()) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		Map<String, String> body = new LinkedHashMap<>();
+		body.put("uid", uid);
+		body.put("creationTime", status.get().getCreationTime() != null ? status.get().getCreationTime().toString() : null);
+		body.put("lastLoginTime", status.get().getLastLoginTime() != null ? status.get().getLastLoginTime().toString() : null);
+		return Response.ok(EntityUtils.object_mapToJsonString(body)).build();
+	}
+
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/{accesstoken}/delete/{uid}")
